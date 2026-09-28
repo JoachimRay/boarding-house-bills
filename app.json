@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": " Expo Test",
-    "slug": "Expo_Test",
+    "name": "boarding-house-bills",
+    "slug": "boarding-house-bills",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "test",
+    "scheme": "boarding-house-bills",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"

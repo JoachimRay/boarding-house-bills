@@ -1,9 +1,9 @@
-import { useCustomers } from '../hooks/use-customers';
 import { ActivityIndicator, Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ShareBar } from '../components/share-bar';
 import { Stat } from '../components/stat';
 import { summarise } from '../data/summary';
+import { useCustomers } from '../hooks/use-customers';
 import { useTheme } from '../hooks/use-theme';
 
 export default function Index() {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchCustomers, type Customer } from '../data/customer';
+
 import { problemFor, type Status } from '../data/problem';
 
 export function useCustomers() {

@@ -1,6 +1,6 @@
 
     import { router } from 'expo-router';
-    import { useState } from 'react';
+import { useState } from 'react';
 import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AddCustomerModal } from '../../components/add-customer-modal';

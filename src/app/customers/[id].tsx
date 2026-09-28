@@ -15,7 +15,7 @@ useEffect(() => {
 let live = true;
 fetchCustomer(id)
 .then((row) => { if (live) { setCustomer(row); setStatus("content"); } })
-.catch((e) => { if (live) { setProblem(problemFor(e)); setStatus("error"); } });
+.catch((error) => { if (live) { setProblem(problemFor(error)); setStatus("error"); } });
 return () => { live = false; };
 }, [id, attempt]);
 
