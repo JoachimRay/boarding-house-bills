@@ -1,5 +1,6 @@
 import { Button, StyleSheet, View } from 'react-native';
 
+import { StorePhoto } from '../components/store-photo';
 import { ThemedText } from '../components/themed-text';
 import { Spacing } from '../constants/theme';
 import { useProfile } from '../hooks/use-profile';
@@ -15,6 +16,7 @@ export default function AccountScreen() {
         Role: {profile?.role ?? 'user'}
       </ThemedText>
       <Button title="Sign out" onPress={() => void supabase.auth.signOut()} />
+      <StorePhoto />
     </View>
   );
 }

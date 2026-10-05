@@ -44,7 +44,7 @@ export function SignIn() {
 
   return (
     <ThemedView style={styles.screen}>
-      <ThemedText type="title">Tindahan Ledger</ThemedText>
+      <ThemedText type="title">Dorm Ledger</ThemedText>
       <ThemedText themeColor="textSecondary">
         {creating ? "Create an account" : "Sign in"}
       </ThemedText>
