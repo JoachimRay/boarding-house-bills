@@ -11,6 +11,9 @@ export function problemFor(e: unknown) {
   if (e instanceof Error && e.message === 'request-timeout') {
     return 'The API request timed out. Check that the Next.js server is running.';
   }
+  if (e instanceof Error && e.message === '401') {
+    return 'Your session has expired. Please sign in again.';
+  }
   if (e instanceof Error && /^\d+$/.test(e.message)) {
     return `Request failed (${e.message}). Check the API server.`;
   }
@@ -25,5 +28,7 @@ export function problemFor(e: unknown) {
   }
   return 'Something went wrong.';
 }
+
+
 
 export type Status = 'loading' | 'empty' | 'error' | 'content';

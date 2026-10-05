@@ -1,8 +1,10 @@
+import { SignIn } from '@/components/sign-in';
+import { useSession } from '@/hooks/use-session';
 import { DefaultTheme, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { useColorScheme, View } from 'react-native';
-import BottomTab from '../components/app-tabs';
+import { ActivityIndicator, View } from 'react-native';
+import AppTabs from '../components/app-tabs';
 import Navigation from '../components/navbar';
 
 SplashScreen.preventAutoHideAsync();
@@ -21,19 +23,26 @@ const AppTheme = {
 };
 
 export default function TabLayout() {
+  const session = useSession();
 
-  useEffect(() => {SplashScreen.hideAsync();}, []);
-  const colorScheme = useColorScheme();
-  const theme = colorScheme === 'dark' ? 'dark' : 'light';
+  useEffect(() => {
+    if (session !== undefined) {
+      SplashScreen.hideAsync();
+    }
+  }, [session]);
 
   return (
- <View style={{ flex: 1, backgroundColor: '#000000' }}>
     <ThemeProvider value={AppTheme}>
-   
-      <Navigation title="Customers" />
-      <BottomTab />
+      <View style={{ flex: 1, backgroundColor: '#000000' }}>
+        {session === undefined && <ActivityIndicator style={{ flex: 1 }} />}
+        {session === null && <SignIn />}
+        {session && (
+          <>
+            <Navigation title="Customers" />
+            <AppTabs />
+          </>
+        )}
+      </View>
     </ThemeProvider>
-  </View>
-
   );
 }

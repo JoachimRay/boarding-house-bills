@@ -12,6 +12,7 @@ export function useCustomers() {
   useEffect(() => {
     let live = true;
     setStatus('loading');
+    setProblem('');
 
     fetchCustomers()
       .then((rows) => {
