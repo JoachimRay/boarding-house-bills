@@ -14,6 +14,15 @@ export function problemFor(e: unknown) {
   if (e instanceof Error && e.message === '401') {
     return 'Your session has expired. Please sign in again.';
   }
+  if (e instanceof Error && e.message === '400') {
+    return 'The API rejected this entry. Check the amount and try again.';
+  }
+  if (e instanceof Error && e.message === '403') {
+    return 'Only an admin can make this change.';
+  }
+  if (e instanceof Error && e.message === '404') {
+    return 'This customer or ledger entry could not be found.';
+  }
   if (e instanceof Error && /^\d+$/.test(e.message)) {
     return `Request failed (${e.message}). Check the API server.`;
   }

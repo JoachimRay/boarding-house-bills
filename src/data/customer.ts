@@ -13,6 +13,14 @@ export type Profile = {
   role: string;
 };
 
+export type CustomerEntry = {
+  id: string;
+  customerId: string;
+  kind: 'due' | 'payment';
+  amount: number;
+  createdAt: string;
+};
+
 const BASE = process.env.EXPO_PUBLIC_API_URL?.trim();
 
 function timeout(ms: number): Promise<never> {
@@ -47,6 +55,8 @@ async function get(path: string) {
 export const fetchCustomers = (): Promise<Customer[]> => get('/api/customers');
 export const fetchCustomer = (id: string): Promise<Customer> =>
   get(`/api/customers/${encodeURIComponent(id)}`);
+export const fetchCustomerEntries = (id: string): Promise<CustomerEntry[]> =>
+  get(`/api/customers/${encodeURIComponent(id)}/entries`);
 
 export async function fetchProfile(): Promise<Profile> {
   const res = await request('/api/me');
@@ -59,6 +69,20 @@ export async function addCustomer(name: string, balance: number): Promise<Custom
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, balance }),
+  });
+  if (!res.ok) throw new Error(String(res.status));
+  return res.json();
+}
+
+export async function addCustomerEntry(
+  id: string,
+  kind: CustomerEntry['kind'],
+  amount: number,
+): Promise<CustomerEntry> {
+  const res = await request(`/api/customers/${encodeURIComponent(id)}/entries`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ kind, amount }),
   });
   if (!res.ok) throw new Error(String(res.status));
   return res.json();
